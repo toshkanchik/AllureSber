@@ -1,0 +1,9 @@
+ru\appline\sberFramework\pages\MortgageSubwindow.class
+ru\appline\sberFramework\pages\BasePage.class
+ru\appline\sberFramework\pages\MortgageCalcPage.class
+ru\appline\sberFramework\managers\PageMngr.class
+ru\appline\sberFramework\managers\InitMngr.class
+ru\appline\sberFramework\utils\MyListener.class
+ru\appline\sberFramework\managers\DriverMngr.class
+ru\appline\sberFramework\pages\StartPage.class
+ru\appline\sberFramework\managers\PropMngr.class
