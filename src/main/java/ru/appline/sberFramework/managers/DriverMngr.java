@@ -39,6 +39,7 @@ public class DriverMngr {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
+                break;
             default:
                 Assertions.fail("Типа браузера '" + props.getProperty("type.browser") + "' не существует во фреймворке");
         }
