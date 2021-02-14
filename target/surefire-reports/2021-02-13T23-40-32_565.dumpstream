@@ -1,4 +1,0 @@
-# Created at 2021-02-13T23:40:33.118
-Boot Manifest-JAR contains absolute paths in classpath 'D:\StudyAppline\AFT\AFT_HomeWork\HomeworkAllure\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-

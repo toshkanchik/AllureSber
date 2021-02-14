@@ -1,24 +1,21 @@
 package ru.appline.sberFramework.utils;
 
 import io.qameta.allure.Attachment;
-import org.junit.platform.engine.TestExecutionResult;
-import org.junit.platform.launcher.TestExecutionListener;
-import org.junit.platform.launcher.TestIdentifier;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 import static ru.appline.sberFramework.managers.DriverMngr.getDriver;
 
-public class MyListener implements TestExecutionListener {
+public class MyListener implements TestWatcher {
     @Override
-    public void executionFinished(TestIdentifier testIdentifier, TestExecutionResult testExecutionResult) {
+    public void testFailed(ExtensionContext context, Throwable cause) {
         addScreenshot1();
     }
 
-
-
     @Attachment(value = "screenshot", type = "image/png", fileExtension = ".png")
-    public static byte[] addScreenshot1() {
+    public byte[] addScreenshot1() {
         return ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }

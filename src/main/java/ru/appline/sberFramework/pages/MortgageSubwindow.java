@@ -44,10 +44,12 @@ public class MortgageSubwindow extends BasePage {
         for (WebElement element : InputFields) {
             if (element.findElement(By.xpath("./div")).getText().equalsIgnoreCase(field)) {
                 WebElement input = element.findElement(By.xpath("./input"));
-                scrollToElementOffsetJs(input);
+                if(!isVisibleInViewport(input)) scrollToElementOffsetJs(input);
+//                scrollToElementOffsetJs(input);
                 elementToBeClickable(input).click();
                 input.sendKeys(Keys.CONTROL, "a");
                 input.sendKeys(value, Keys.ENTER);
+                waitUntilPricesFinalize();
                 Assertions.assertEquals(input.getAttribute("value"), df.format(Integer.parseInt(value.replaceAll(
                         "[^\\d]", ""))), "При вводе значение произошла ошибка");
                 break;
@@ -69,7 +71,8 @@ public class MortgageSubwindow extends BasePage {
         WebElement currElement = discounts.findElement(By.xpath("//span[. = '" + name + "']/../..//input"));
         String isChecked = currElement.getAttribute("aria-checked");
         if(!shouldBe.equalsIgnoreCase(isChecked)){
-            if(!isVisibleInViewport(currElement)) scrollToElementOffsetJs(currElement);
+//            if(!isVisibleInViewport(currElement)) scrollToElementOffsetJs(currElement);
+            scrollToElementOffsetJs(currElement);
             currElement.click();
         }
         wait.until(ExpectedConditions.attributeContains(currElement, "aria-checked", shouldBe));
@@ -111,9 +114,10 @@ public class MortgageSubwindow extends BasePage {
      */
     @Step("Проверка что в поле '{name}' значение '{shouldBe}'")
     public MortgageSubwindow checkIfFieldEquals(String name, String shouldBe){
-        Assertions.assertEquals(resultsBlock
-                        .findElement(By.xpath(".//span[. = '" + name + "']/../span[@data-e2e-id]/span"))
-                        .getText(), shouldBe,"Значение поля '" + name +" не совпадает'");
+        WebElement currElement = resultsBlock
+                .findElement(By.xpath(".//span[. = '" + name + "']/../span[@data-e2e-id]/span"));
+        scrollToElementOffsetJs(resultsBlock);
+        Assertions.assertEquals(currElement.getText(), shouldBe,"Значение поля '" + name +" не совпадает'");
         return this;
     }
 
