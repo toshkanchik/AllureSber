@@ -2,6 +2,7 @@ package ru.appline.sberFramework.tests;
 
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ru.appline.sberFramework.baseClasses.BaseTest;
 
@@ -9,6 +10,7 @@ public class FirstTest extends BaseTest {
     @Test()
     @DisplayName("Оформление ипотеки")
     @Description("Оформление ипотеки")
+    @Tag("FirstTest")
     public void testStart(){
         pages.getStartPage()
                 .selectBaseMenu("Ипотека")
