@@ -28,18 +28,45 @@ public class DriverMngr {
                 break;
             case "remote":
                 DesiredCapabilities capabilities = new DesiredCapabilities();
-                capabilities.setBrowserName("chrome");
-                capabilities.setVersion("73.0");
-                capabilities.setCapability("enableVNC", true);
-                capabilities.setCapability("enableVideo", false);
-                try {
-                    driver = new RemoteWebDriver(
-                            URI.create("http://selenoid.appline.ru:4445/wd/hub/").toURL(),
-                            capabilities);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
+                switch (props.getProperty("remoteBrowser")) {
+                    case "chrome":
+                        capabilities.setBrowserName("chrome");
+                        capabilities.setVersion("73.0");
+                        capabilities.setCapability("enableVNC", true);
+                        capabilities.setCapability("enableVideo", false);
+                        try {
+                            driver = new RemoteWebDriver(URI.create("http://selenoid.appline.ru:4445/wd/hub/").toURL(), capabilities);
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case "firefox":
+                        capabilities.setBrowserName("firefox");
+                        capabilities.setVersion("65.0");
+                        capabilities.setCapability("enableVNC", true);
+                        capabilities.setCapability("enableVideo", false);
+
+                        try {
+                            driver = new RemoteWebDriver(URI.create("http://selenoid.appline.ru:4445/wd/hub/").toURL(), capabilities);
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case "opera":
+                        capabilities.setBrowserName("opera");
+                        capabilities.setVersion("58.0");
+                        capabilities.setCapability("enableVNC", true);
+                        capabilities.setCapability("enableVideo", false);
+
+                        try {
+                            driver = new RemoteWebDriver(URI.create("http://selenoid.appline.ru:4445/wd/hub/").toURL(), capabilities);
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    default:
+                        Assertions.fail("Браузер '" + props.getProperty("type.remoteBrowser") + "' не поддерживается на сервере");
                 }
-                break;
             default:
                 Assertions.fail("Типа браузера '" + props.getProperty("type.browser") + "' не существует во фреймворке");
         }

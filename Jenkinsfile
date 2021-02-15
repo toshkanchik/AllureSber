@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('Run Tests'){
             steps{
-                sh "/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/3.6.3/bin/mvn clean test -Dtag=\"${TESTNAME}\" allure:report"
+                sh "/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/3.6.3/bin/mvn clean test -Dtag=\"${TESTNAME}\" -Dtype.browser=remote -DremoteBrowser=\"${BROWSER}\""
             }
         }
         stage('Allure Report Generation'){

@@ -10,6 +10,7 @@ public class PropMngr {
 
     private PropMngr(){
         loadProps();
+        loadCustomProperties();
     }
 
     public static PropMngr GetPropMngr(){
@@ -25,6 +26,15 @@ public class PropMngr {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void loadCustomProperties() {
+        props.forEach((key, value) -> System.getProperties()
+                .forEach((customUserKey, customUserValue) -> {
+                    if (key.toString().equals(customUserKey.toString()) &&
+                            !value.toString().equals(customUserValue.toString())) {
+                        props.setProperty(key.toString(), customUserValue.toString());
+                    }
+                }));
     }
     public String getProperty(String key) {
         return props.getProperty(key);
