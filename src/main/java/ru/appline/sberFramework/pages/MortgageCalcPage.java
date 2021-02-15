@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static ru.appline.sberFramework.managers.DriverMngr.getDriver;
+import static ru.appline.sberFramework.utils.MyLogger.getLog;
 
 public class MortgageCalcPage extends BasePage {
 
@@ -15,6 +16,7 @@ public class MortgageCalcPage extends BasePage {
      */
     @Step("Переключиться на окно калькулятора")
     public MortgageSubwindow switchToSubwindow() {
+        getLog().fine("Switching to subwindow");
         scrollToElementJs(getDriver().findElement(By.xpath("//h2[@class='t-header-big' and . ='​Рассчитайте ипотеку']")));
         getDriver().switchTo().frame("iFrameResizer0");
 //        getDriver().findElement(By.xpath("//span[. ='Ежемесячный платеж']"));

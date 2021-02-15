@@ -2,6 +2,8 @@ package ru.appline.sberFramework.managers;
 
 import ru.appline.sberFramework.pages.*;
 
+import static ru.appline.sberFramework.utils.MyLogger.getLog;
+
 public class PageMngr {
     private static PageMngr pageMngr;
     private static StartPage startPage;
@@ -18,6 +20,7 @@ public class PageMngr {
     }
 
     public StartPage getStartPage() {
+        getLog().fine("GetStartPage");
         if (startPage == null) {
             startPage = new StartPage();
         }

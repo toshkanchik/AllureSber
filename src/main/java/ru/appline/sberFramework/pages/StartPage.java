@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+import static ru.appline.sberFramework.utils.MyLogger.getLog;
+
 public class StartPage extends BasePage {
     @FindBy(xpath = "//a[contains(@class, 'kitt-top-menu__link') and @role='button']")
     List<WebElement> menuBaseList;
@@ -22,6 +24,7 @@ public class StartPage extends BasePage {
      */
     @Step("Переход в главное меню {nameBaseMenu}")
     public StartPage selectBaseMenu(String nameBaseMenu) {
+        getLog().fine("Selecting BaseMenu");
         for (WebElement menuItem : menuBaseList) {
             if (menuItem.getText().equalsIgnoreCase(nameBaseMenu)){
                 menuItem.click();
@@ -40,6 +43,7 @@ public class StartPage extends BasePage {
      */
     @Step("Выбираем подменю {nameSubMenu}")
     public MortgageCalcPage selectSubMenu(String nameSubMenu) {
+        getLog().fine("Selecting SubMenu");
         for (WebElement menuItem : menuSubList) {
             if (menuItem.getText().equalsIgnoreCase(nameSubMenu)) {
                 elementToBeVisible(menuItem);

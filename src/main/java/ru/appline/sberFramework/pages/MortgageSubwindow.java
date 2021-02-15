@@ -13,6 +13,8 @@ import java.text.DecimalFormatSymbols;
 import java.util.Date;
 import java.util.List;
 
+import static ru.appline.sberFramework.utils.MyLogger.getLog;
+
 public class MortgageSubwindow extends BasePage {
     @FindBy(xpath = "//div[@class='dc-input__input-container-4-9-1']")
     List<WebElement> InputFields;
@@ -33,7 +35,7 @@ public class MortgageSubwindow extends BasePage {
      */
     @Step("Заполнить поле '{field}' значением '{value}'")
     public MortgageSubwindow inputField(String field, String value) {
-
+        getLog().fine("Filling in inputFields");
         DecimalFormat df = new DecimalFormat();
         df.setGroupingUsed(true);
         df.setGroupingSize(3);
@@ -67,6 +69,7 @@ public class MortgageSubwindow extends BasePage {
      */
     @Step("Заполнить поле '{name}' значением '{shouldBeChecked}'")
     public MortgageSubwindow setButtonsByName(String name, boolean shouldBeChecked){
+        getLog().fine("Filling checkboxes");
         String shouldBe = String.valueOf(shouldBeChecked);
         WebElement currElement = discounts.findElement(By.xpath("//span[. = '" + name + "']/../..//input"));
         String isChecked = currElement.getAttribute("aria-checked");
@@ -114,6 +117,7 @@ public class MortgageSubwindow extends BasePage {
      */
     @Step("Проверка что в поле '{name}' значение '{shouldBe}'")
     public MortgageSubwindow checkIfFieldEquals(String name, String shouldBe){
+        getLog().fine("Checking numbers");
         WebElement currElement = resultsBlock
                 .findElement(By.xpath(".//span[. = '" + name + "']/../span[@data-e2e-id]/span"));
         scrollToElementOffsetJs(resultsBlock);
