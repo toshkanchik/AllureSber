@@ -67,6 +67,7 @@ public class DriverMngr {
                     default:
                         Assertions.fail("Браузер '" + props.getProperty("type.remoteBrowser") + "' не поддерживается на сервере");
                 }
+                break;
             default:
                 Assertions.fail("Типа браузера '" + props.getProperty("type.browser") + "' не существует во фреймворке");
         }
